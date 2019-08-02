@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nav Bar Demo</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+<body>
+   <div class="container">
+       <ul id="mytab" class="nav nav-pills" role="tablist">
+           <li role="presentation" class="active "><a>Home</a></li>
+           <li role="presentation" class=""><a href="">Project</a></li>
+           <li role="presentation" class="dropdown">
+               <a href="" class="dropdown-toggle" data-toggle="dropdown">Download
+               <span class="caret"></span></a>
+               <ul class="dropdown-menu" role="menu">
+                   <li role="presentation"><a href="" class="menuitem" tabindex="-1">x86</a></li>
+                   <li role="presentation"><a href="">x86-64</a></li>
+                   <li role="presentation"><a href="">arm</a></li>
+               </ul>
+           </li>
+       </ul>
+   </div> 
+   <script src="../jquery-3.4.1.min.js"></script>
+   <script src="../bootstrap.min.js"></script>
+   <script>
+       $("#mytab a").click(function(e){
+           e.preventDefault();
+           $(this).tab("show");
+       })
+   </script>
+</body>
+</html>
