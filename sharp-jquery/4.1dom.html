@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 13px;
+            line-height: 130%;
+            padding: 60px
+        }
+
+        #panel {
+            width: 300px;
+            border: 1px solid #0050D0
+        }
+
+        .head {
+            height: 24px;
+            line-height: 24px;
+            text-indent: 10px;
+            background: #96E555;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .content {
+            padding: 10px;
+            text-indent: 24px;
+            border-top: 1px solid #0050D0;
+            display: block;
+            display: none;
+            
+        }
+        .highlight{
+            background: #ff3300;
+        }
+    </style>
+    <script src="./jquery-3.4.1.js"></script>
+   
+</head>
+<body>
+    <div id="panel">
+        <h5 class="head">What is JQuery?</h5>
+        <div class="content">
+                jQuery is another excellent JavaScript lib following Prototype, an open-source project established by John Resig in Jan 2006. 
+                jQuery extremely simplifies developer traversing HTML document, operating DOM, handling event, executing animation 
+                and developing Ajax depends on its concise syntax and cross-platform compatible. Its distinctive and elegent code style makes
+                JavaScript developer change their design thinking and coding mode. 
+        </div>
+    </div>
+    <script>
+        $(function(){
+            // $("#panel h5.head").bind("click", function(){
+            //     var $content = $(this).next();
+            //     if ($content.is(":visible")){
+            //         $content.hide();
+            //     }else{
+            //         $content.show();
+            //     }
+            // })
+            //  $("#panel h5.head").bind("mouseover", function(){
+            //     $(this).next().show();
+            //  }).bind("mouseout", function(){
+            //      $(this).next().hide();
+            //  })
+
+            // $("#panel h5.head").hover(function(){
+            //     $(this).next().show();
+            // }, function () { 
+            //     $(this).next().hide();
+            // })
+
+            // $("#panel h5.head").click(function(){
+            //     $(this).next().toggle();
+            // })
+            
+            // $("#panel h5.head").bind("mouseover",function(){
+            //     $(this).next().fadeIn(300);
+            // }).bind("mouseout", function(){
+            //     $(this).next().fadeOut(300);
+            // })
+           
+            $("#panel h5.head").bind("mouseover",function(){
+                $(this).next().slideDown();
+            }).bind("mouseout", function(){
+                $(this).next().slideUp();
+            })
+        })
+    </script>
+</body>
+</html>

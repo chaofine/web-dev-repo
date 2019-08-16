@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            background: rgb(180, 180, 180);
+            margin: 20px, 20px;
+            padding: 0 10px;
+            cursor: pointer;
+        } 
+        textarea{
+            display: block;
+            position: relative ;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+   <form action="">
+       <div class="msg">
+           <span class="bigger">+</span>
+           <span class="smaller">-</span>
+           <span class="up">⇧</span>
+           <span class="down">⇩</span>
+       </div>
+       <div>
+           <textarea name="" id="comment" >评论 框 也需 要 设置 最小 高度 和 最大 高度， 当 达到 界限 后再 单击 按钮， 评论 框 的 高度 就不 会 再有 任何 变化。</textarea>
+       </div>
+   </form> 
+
+   <form action="">
+       Favorite sport: <br>
+       <input type="checkbox" name="items" value="soccer">soccer
+       <input type="checkbox" name="items" value="basket ball">basket ball
+       <input type="checkbox" name="items" value="badminton">badminton
+       <input type="checkbox" name="items" value="table tennis">table tennis
+       <input type="button"  id="checkAll" value="check all">
+       <input type="button"  id="checkNo" value="check no">
+       <input type="button"  id="checkRev" value="check reverse">
+       <input type="button"  id="send" value="submit">
+  </form>
+   <script src="./jquery-3.4.1.js"></script>
+   <script>
+       $(function(){
+           var $comment = $("#comment");
+           $('.bigger').click(function () { 
+               if ($comment.height() < 500){
+                   //$comment.height($comment.height() + 50);
+                   $comment.animate({height: "+=50"}, 400);
+               }
+            });
+            $('.smaller').click(function(){
+                if ($comment.height() > 50){
+                   //$comment.height($comment.height() - 50);
+                   $comment.animate({height: "-=50"}, 400);
+                }
+            });
+            $(".up").click(function(){
+                if (!$comment.is(":animated")) {
+                   $comment.animate({scrollTop : "-=50"}, 400);
+                }
+            });
+            $(".down").click(function(){
+                if(!$comment.is(":animated")) {
+                    $comment.animate({scrollTop : "+=50"}, 400);
+                }
+            });
+            $("#checkAll").click(function(){
+                $('[name=items]:checkbox').attr('checked', true);
+            });
+            $("#checkNo").click(function(){
+                $('[name=items]:checkbox').attr('checked', false);
+            });
+
+            $("#checkRev").click(function(){
+                $('[name=items]:checkbox').each(function(){
+                    // $(this).attr("checked", !$(this).attr("checked"));
+                    this.checked = !this.checked;
+                });
+            });
+            $("#send").click(function () { 
+                var str = "choosed:\r\n";
+                $('[name=items]:checkbox:checked').each(function(){
+                    str += $(this).val()+"\r\n";
+                });
+                alert(str);
+             })
+       });
+   </script>
+</body>
+</html>

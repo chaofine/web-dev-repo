@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * { margin: 0; padding: 0;}
+        body {font:12px/17px Courier New, sans-serif; }
+        .tab {width: 240px; margin: 50px;}
+        .tab_menu {clear: both;}
+        .tab_menu li {float: left; cursor: pointer ; list-style: none; padding: 1px 6px; margin-right: 4px; border: 1px solid #898989; border-bottom: none; border-top-left-radius: 3px;border-top-right-radius: 3px;}
+        .tab_menu li.hover{background: #DFDFDF;}
+        .tab_menu li.selected {color: #fff;background: #6e84b4;}
+        .tab_box{clear: both; border: 1px solid #898989; height: 100px;}
+        .hide{display: none;}
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="tab_menu">
+            <ul>
+                <li class="selected">时事</li>
+                <li>体育</li>
+                <li>娱乐</li>
+            </ul>
+        </div>
+        <div class="tab_box">
+            <div>时事新闻</div>
+            <div class="hide">体育资讯</div>
+            <div class="hide">娱乐头条</div>
+        </div>
+    </div>
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            var $div_li = $('div.tab_menu ul li');
+            $div_li.click(function () {
+                $(this).addClass("selected")
+                    .siblings().removeClass("selected");
+
+                var index = $div_li.index(this);
+                $("div.tab_box > div").eq(index).show()
+                    .siblings().hide();
+            }).hover(function () {
+                $(this).addClass("hover");
+            }, function(){
+                $(this).removeClass("hover");
+            });
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            font: normal 12px/17px Arial;
+            padding: 2px;
+            width: 100px;
+        }
+
+        th {
+            font: bold 12px/17px Arial;
+            text-align: left;
+            padding: 4px;
+            border-bottom: 1px solid #333;
+            width: 100px;
+        }
+
+        .parent {
+            background: #FFF38F;
+            cursor: pointer;
+        }
+
+        /* 偶数行样式*/
+        .odd {
+            background: #FFFFEE;
+        }
+
+        /* 奇数行样式*/
+        .selected {
+            background: #FF6500;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div><span>筛选</span><input type="text" name="" id="filter"></div>
+        <table>
+            <thead>
+                <tr><th>姓名</th><th>性别</th><th>地址</th></tr>
+            </thead>
+            <tbody>
+                <tr class="parent" id="row_01"><td colspan="3">长三角</td></tr>
+                <tr class="child_row_01"><td>zhangshan</td><td>male</td><td>Ningbo</td></trcla>
+                <tr class="child_row_01"><td>Lisi</td><td>male</td><td>HangZhou</td></tr>
+
+                <tr class="parent" id="row_02"><td colspan="3">京津冀</td></tr>
+                <tr class="child_row_02"><td>Zhao</td><td>female</td><td>Beijing</td></tr>
+                <tr class="child_row_02"><td>Rain</td><td>male</td><td>Tianjin</td></tr>
+
+                <tr class="parent" id="row_03"><td colspan="3">珠三角</td></tr>
+                <tr class="child_row_03"><td>Lee</td><td>female</td><td>Guangzhou</td></tr>
+                <tr class="child_row_03"><td>Huang</td><td>female</td><td>WengZhou</td></tr>
+            </tbody>
+        </table>
+        <script src="./jquery-3.4.1.js"></script>
+        <script>
+            $(function(){
+                $('tr.parent').click(function(){
+                    $(this).toggleClass("selected")
+                    .siblings('.child_'+this.id).toggle();
+                });
+                $('#filter').keyup(function(){
+                    $('table tbody tr').hide()
+                    .filter(":contains('"+$(this).val()+"')").show();
+                })
+            })
+        </script>
+</body>
+</html>

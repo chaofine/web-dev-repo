@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            font: 12px/19px Arial, Helvetica, sans-serif;
+            color: #666;
+        }
+        form div {
+            margin: 5px 0;
+        }        
+        .int label {
+            display: inline-block;
+            min-width: 100px;
+            text-align: right;
+        }
+        .int input {
+            padding: 1px 1px;
+            border: 1px solid #ccc;
+            height: 16px;
+        }
+        .sub {
+            padding-left: 100px;
+        }
+        .sub input{
+            margin-right: 10px;
+        }
+        .formtips{
+            width: 200px;
+            margin: 2px;
+            padding: 2px;
+        }
+        .high{
+            color: red;
+        }
+        .onError{
+            background: rgb(245, 169, 169);
+            padding: 2px 25px;
+            text-align: center;
+        }
+        .onSuccess{
+            background: #e9fbeb;
+            padding-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="">
+        <div class="int">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" class="required">
+        </div>
+        <div class="int">
+            <label for="email">邮箱:</label>
+            <input type="text" name="" id="email" class="required">
+        </div>
+        <div class="int">
+            <label for="personinfo">个人资料:</label>
+            <input type="text" name="" id="personinfo">
+        </div>
+        <div class="sub">
+            <input type="submit" name="" id="send" value="提交"><input type="reset" name="" id="res">
+        </div>
+    </form>
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+        $(function () { 
+            $('form :input.required').each(function () { 
+                var $required = $('<strong class="high">*</strong>');
+                $(this).parent().append($required);
+             });
+             $('form :input').blur(function () { 
+                 var $parent = $(this).parent();
+                 $parent.find(".formtips").remove();
+                 if ($(this).is('#username')){
+                     if (this.val == "" || this.value.length < 6){
+                         var errorMsg = 'At least 6 characters for username!';
+                         $parent.append('<span class="formtips onError">'+errorMsg+'</span>');
+                    }else{
+                        var okMsg = 'OK';
+                         $parent.append('<span class="formtips onSuccess">'+okMsg+'</span>');
+                    }
+                 }
+              }).keyup(function(){
+                  $(this).triggerHandler("blur");
+              }).focus(function () { 
+                  $(this).triggerHandler("blur");
+               });
+              $('#send').click(function () { 
+                  $('form .required:input').trigger('blur');
+                  var numError = $('form .onError').length;
+                  if (numError){
+                      return false;
+                  }
+                  alert("注册成功，请查收邮箱。");
+               })
+         })
+    </script>
+</body>
+</html>

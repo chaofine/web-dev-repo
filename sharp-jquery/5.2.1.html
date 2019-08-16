@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+        table {
+            border: 0;
+            border-collapse: collapse;
+            width: 600px;
+            margin: 0 auto;
+        }
+        td {
+            font: normal 12px/17px Consolas;
+            padding: 2px;
+        }
+        th {
+           font: bold 12px/17px Consolas;
+           text-align: left;
+           padding: 4px;
+           border-bottom: 1px solid #333;
+        }
+        /* tbody tr:nth-child(even){background: #fff38f;}
+        tbody tr:nth-child(odd){background: #ffffef;} */
+        .even{ background:#FFF38F;}  
+        .odd{ background:#FFFFEE;} 
+        .selected{background: #ff6500;color: rgb(19, 230, 184);}
+    </style>
+</head>
+<body>
+<div class="table">
+        <table>
+            <thead>
+                <tr><th></th><th>姓名</th><th>性别</th><th>地址</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><span><input type = "radio" name="choice"></span></td><td>zhangshan</td><td>male</td><td>Ningbo</td></tr>
+                <tr class="selected"><td><span><input type = "radio" name="choice"></span></td><td>Lisi</td><td>male</td><td>HangZhou</td></tr>
+                <tr><td><span><input type = "radio" name="choice"></span></td><td>Wang</td><td>female</td><td>Shanghai</td></tr>
+                <tr><td><span><input type = "radio" name="choice"></span></td><td>Zhao</td><td>female</td><td>Beijing</td></tr>
+                <tr><td><span><input type = "radio" name="choice"></span></td><td>Rain</td><td>male</td><td>WengZhou</td></tr>
+                <tr><td><span><input type = "radio" name="choice"></span></><td>San</td><td>male</td><td>ChangSha</td></tr>
+            </tbody>
+        </table>
+</div>
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            $("tbody>tr:odd").addClass("odd");
+            $("tbody>tr:even").addClass("even");
+            $('tbody>tr').click(function () {
+                $(this).addClass('selected')
+                    .siblings().removeClass('selected')
+                    .end()
+                    .find(':radio').prop('checked', true);
+            });
+            $('table :radio:checked').parent().parent().addClass('selected');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery-3.4.1.js"></script>
+    <style>
+    body{
+        margin:0;
+        padding:40px;
+        background:#fff;
+        font:80% Arial, Helvetica, sans-serif;
+        color:#555;
+        line-height:180%;
+    }
+    p{
+        clear:both;
+        margin:0;
+        padding:.5em 0;
+    }
+    /* tooltip */
+    #tooltip{
+        position:absolute;
+        border:1px solid #333;
+        background:#f7f5d1;
+        padding:1px;
+        color:#333;
+        display:none;
+    }
+    </style>
+</head>
+<body>
+    <p><a href="#" class="tooltip" title="this is a hyper link tip 1">tip 1</a></p>
+    <p><a href="#" class="tooltip" title="this is a hyper link tip 2">tip 2</a></p>
+    <p><a href="#" title="这是自带提示1">自带提示1</a></p>
+    <p><a href="#" title="这是自带提示2">自带提示2</a></p>
+    <script>
+        $(function () {
+            $("a.tooltip").mouseover(function (e) {
+                this.mytitle = this.title;
+                this.title = "";
+                var tooltip = "<div id='tooltip'>" + this.mytitle + "ss<\/div>";
+                $("body").append(tooltip);
+                $("#tooltip").css({
+                    "top": (e.pageY+20) + "px",
+                    "left": (e.pageX+10) + "px"
+                }).show("fast");
+            }).mouseout(function () {
+                this.title = this.mytitle;
+                $("#tooltip").remove();
+            });
+        })
+    </script>
+</body>
+
+</html>

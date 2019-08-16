@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        a {
+            color: #04d;
+            text-decoration: none
+        }
+
+        a:hover {
+            color: #f50;
+            text-decoration: underline
+        }
+
+        .subCategoryBox {
+            text-align: center;
+            width: 600px;
+            margin: 0 auto;
+            margin-top: 40px;
+            background-color: aliceblue;
+            border: 1px;
+        }
+
+        .subCategoryBox ul {
+            list-style: none;
+        }
+
+        .subCategoryBox ul li {
+            display: block;
+            float: left;
+            width: 200px;
+            line-height: 20px;
+        }
+
+        .showmore {
+            clear: both;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .showmore a {
+            display: block;
+            text-align: center;
+            width: 120px;
+            margin: 0 auto;
+            line-height: 24px;
+            border: 1px solid #aaa;
+            background-color: rgba(0, 66, 221, 0.548);
+        }
+
+        .promoted a {
+            color: #f50
+        }
+    </style>
+    <script src="./jquery-3.4.1.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            var $category = $('ul li:gt(5):not(:last)');
+            $category.hide();
+
+            var $toggleBtn = $('div.showmore > a');
+            $toggleBtn.click(function () {
+                if ($category.is(":visible")) {
+                    $category.hide();
+                    $(this).find("span")
+                        .css("background-color", "aliceblue")
+                        .text("显示全部品牌");
+                    $('ul li')
+                        .filter(":contains('Cannon'),:contains('Nikon'),:contains('Aolinbus')")
+                        .removeClass("promoted");
+
+                } else {
+                    $category.show();
+                    $(this).find("span")
+                        .css("background-color", "aliceblue")
+                        .text("精简显示品牌");
+                    $('ul li')
+                        .filter(":contains('Cannon'),:contains('Nikon'),:contains('Aolinbus')")
+                        .addClass("promoted");
+                }
+
+                return false;
+            })
+
+
+        })
+        $(function(){
+            $("#single").val("3");
+        })
+    </script>
+</head>
+
+<body>
+    <div class="input" >
+        <select name="select 1" id="single" style="display: block; width:120px; margin:0 auto; margin-top: 40px">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div class="subCategoryBox">
+        <ul>
+            <li><a href="#">Cannon</a><i>(30440)</i></li>
+            <li><a href="#">Sonny</a><i>(30440)</i></li>
+            <li><a href="#">Sumsung</a><i>(30440)</i></li>
+            <li><a href="#">Nikon</a><i>(30440)</i></li>
+            <li><a href="#">Pansonic</a><i>(30440)</i></li>
+            <li><a href="#">Casio</a><i>(30440)</i></li>
+            <li><a href="#">Fujin</a><i>(30440)</i></li>
+            <li><a href="#">Koda</a><i>(30440)</i></li>
+            <li><a href="#">Binde</a><i>(30440)</i></li>
+            <li><a href="#">Liguang</a><i>(30440)</i></li>
+            <li><a href="#">Aolinbus</a><i>(30440)</i></li>
+            <li><a href="#">Benq</a><i>(30440)</i></li>
+            <li><a href="#">Aigo</a><i>(30440)</i></li>
+            <li><a href="#">Others</a><i>(30440)</i></li>
+        </ul>
+        <div class="showmore"><a href="more.html"><span>显示全部</span></a></div>
+    </div>
+</body>
+
+</html>
